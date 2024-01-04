@@ -9,3 +9,6 @@ rust_saver.exe "C:\Users\<seu_usuario>\pasta_exemplo"
 ```
 Esta versão do rust saver foi feita para funcionar apenas no Windows, e em computadores que possuem o 7zip instalado.
 
+
+### Imagem de exemplo
+<img src="images/print_001.png">
