@@ -48,13 +48,30 @@ fn zip_files(path: String, file_path: String){
 }
 
 fn main() {
-    if args().count() > 1{
-    let argument_path: String = String::from(args().into_iter().nth(1).expect("Error"));
-    match fs::metadata(&argument_path){
-        Ok(_)=>scan_all_files(&argument_path),
-        Err(_)=>println!("O arquivo ou pasta não existe"),
+
+    println!("{} Bem vindo ao rust saver {}", "-".repeat(10), "-".repeat(10));
+    println!("Este programa limpa os projetos rust e comprime em um arquivo 7z da pasta definida no argumento");
+
+    println!("\nDeseja limpar e comprimir seus projetos?\n Sim (S) ou Não (N)");
+
+    let mut user_choice: String = String::new(); 
+    match std::io::stdin().read_line(&mut user_choice) {
+        Ok(_)=>{
+            if user_choice.trim().to_lowercase().eq("s") {
+                if args().count() > 1{
+                let argument_path: String = String::from(args().into_iter().nth(1).expect("Error"));
+                match fs::metadata(&argument_path){
+                    Ok(_)=>scan_all_files(&argument_path),
+                    Err(_)=>println!("O arquivo ou pasta não existe"),
+                }
+                } else{
+                    println!("Você precisa passar o local onde deseja realizar o clean");
+                }
+            }else{
+                println!("Saindo...")
+            }
+        },
+        Err(_)=>println!("Escolha inválida\nSaindo..."),
     }
-    } else{
-        println!("Você precisa passar o local onde deseja realizar o clean");
-    }
+
 }
